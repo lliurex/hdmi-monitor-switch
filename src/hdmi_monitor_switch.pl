@@ -185,10 +185,10 @@ if ($print_cmd==0)
 	_log("SDDM: $cmd_sddm");
 	if ($cmd_auto ne "")
 	{
-		$ENV{XAUTHORITY}=$XAUTHORITY;
 		my $pid=fork();
 		if ($pid==0)
 		{
+			$ENV{XAUTHORITY}=$XAUTHORITY;
 			system("$cmd_auto") or _log (%ENV);
 			exit(0);
 		}
