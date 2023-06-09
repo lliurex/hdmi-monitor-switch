@@ -1,5 +1,5 @@
 hdmi-monitor-switch (0.1) focal; urgency=medium
 
-  * Disconnect from dbus session
+  * Initial (unstable) release
 
  -- Juanma1980 <juanma1980@gmail.com>  Wed, 07 Jun 2023 11:35:09 +0200
