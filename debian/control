@@ -10,6 +10,6 @@ Homepage: http://lliurex.net
 
 Package: hdmi-monitor-switch
 Architecture: all
-Depends: ${python3:Depends}, perl
-Description: AcDisables internal output and enables external 
+Depends: ${python3:Depends}, perl, x11-xserver-utils
+Description: Disables internal output and enables external hdmi
 
