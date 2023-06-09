@@ -2,17 +2,27 @@
 use warnings;
 use strict;
 use Fcntl qw(O_RDWR O_CREAT);
+#use autodie; # Debug purposes
+
+#GLOBAL VARS
 my $drmdir="/sys/class/drm/";
 my $USER=$ENV{LOGNAME} || $ENV{USER} || getpwuid($<);
 my $logfile="/tmp/.hdmi_switch_".$USER.".log";
-use autodie;
 
+#########
+#SUBS
+########
+
+#######
+#Input: Debug msg (string)
+######
 sub _log
 {
 	open(my $fh,">>",$logfile);
 	print($fh "@_\n");
 	close($fh);
 }
+
 ######
 #Input: Array of output candidates
 #Output: Last enabled output
@@ -82,6 +92,11 @@ sub _get_sddm_data
 	return($xauth,$xuser);
 }
 
+
+#####
+#Input: Xauthority, xrandr full path, hdmi device (cardX-hdmi) 
+#Output: xauth and user of Xorg process
+#####
 sub _get_resolution_for_output
 {
 	my ($XAUTH,$XRAND,$HDMI)=@_;
@@ -123,17 +138,19 @@ _log("HDMI: $hdmi");
 
 #Get active cards
 my $xoutput=_get_status(@cards);
+
 #Get data
 my ($XDISPLAY,$XUSER)=_get_session_data();
 my ($XAUTHORITY,$SDDMUSER)=_get_sddm_data();
 chomp(my $PATH_XRANDR=`/bin/which xrandr`);
 my $XRANDR="$PATH_XRANDR -d $XDISPLAY";
-my $cmd_auto="";
-my $cmd_force_off="";
-my $cmd_sddm="";
-my $cmd_off="";
-my $print_cmd=0;
 _log("USER: $XUSER");
+
+
+my $cmd_auto=""; #cmd to execute
+my $cmd_sddm=""; #command printed to stdout for XbrSetup
+my $cmd_off=""; #poweroff command
+my $print_cmd=0; #check need to print result
 if ($XUSER)
 {
 	if ( $hdmi ne "" )
@@ -192,9 +209,8 @@ if ($print_cmd==0)
 			system("$cmd_auto") or _log (%ENV);
 			exit(0);
 		}
-		_log("Switch ended");
 	}
 	print($cmd_sddm);
 }
-
+_log("Switch ended");
 exit(0)
