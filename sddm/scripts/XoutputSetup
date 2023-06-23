@@ -1,0 +1,5 @@
+#!/bin/sh
+# Set outputs for sddm
+
+output=$(/usr/bin/hdmi_monitor_switch.pl)
+[ ! -z $output ] && eval "$output" 
