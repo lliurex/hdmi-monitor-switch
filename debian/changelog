@@ -1,7 +1,8 @@
-hdmi-monitor-switch (0.1.1) focal; urgency=medium
+hdmi-monitor-switch (0.1.2) focal; urgency=medium
 
   * SDDM forces hdmi poweroff
   * Session forces hdmi on
+  * Add sddm scripts
 
  -- Juanma1980 <juanma1980@gmail.com>  Fri, 23 Jun 2023 09:48:46 +0200
 
