@@ -1,4 +1,7 @@
 #!/usr/bin/perl
+# Copyright 2023 LliureX Team
+# GPL-3 licensed
+
 use warnings;
 use strict;
 use Fcntl qw(O_RDWR O_CREAT);
@@ -165,14 +168,17 @@ if ($XUSER)
 		_log("No outputs detected!!!");
 	}
 } elsif ( $hdmi ne "" ){
+	#SDDM must poweroff hdmi and force internal display
 	$XRANDR="/usr/bin/xrandr";
 	my $XRES=_get_resolution_for_output($XAUTHORITY,$XRANDR,$hdmi);
 	$print_cmd=2;
 	#get max res of display
-	$cmd_off="$XRANDR --output $xoutput --off -d :0";
-	#$cmd_auto="$XRANDR --output $hdmi --auto --fb $XRES --output $hdmi --primary --output $xoutput --off -d :0";
-	$cmd_auto="$XRANDR --output $hdmi --auto --fb $XRES -d :0";
-	$cmd_sddm="XAUTHORITY=$XAUTHORITY $XRANDR --output $hdmi --primary --fb $XRES --output $xoutput --off -d :0";
+	#$cmd_off="$XRANDR --output $xoutput --off -d :0";
+	$cmd_off="$XRANDR --output $hdmi --off -d :0";
+	#$cmd_auto="$XRANDR --output $hdmi --auto --fb $XRES -d :0";
+	$cmd_auto="$XRANDR --output $xoutput --auto --fb $XRES -d :0";
+	#$cmd_sddm="XAUTHORITY=$XAUTHORITY $XRANDR --output $hdmi --primary --fb $XRES --output $xoutput --off -d :0";
+	$cmd_sddm="XAUTHORITY=$XAUTHORITY $XRANDR --output $xoutput --primary --fb $XRES --d :0 -output $hdmi --off ";
 } else {
 	$XRANDR="/usr/bin/xrandr";
 	$print_cmd=1;
