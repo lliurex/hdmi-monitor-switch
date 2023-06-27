@@ -1,5 +1,4 @@
 src/* /usr/bin
-udev/* /etc/udev/rules.d
 sddm/scripts/* /usr/share/sddm/scripts
 sddm/sddm.conf.d/* /usr/lib/sddm/sddm.conf.d
 

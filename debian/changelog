@@ -1,3 +1,9 @@
+hdmi-monitor-switch (0.2.0) focal; urgency=medium
+
+  * Disable udev
+
+ -- Juanma1980 <juanma1980@gmail.com>  Tue, 27 Jun 2023 09:18:19 +0200
+
 hdmi-monitor-switch (0.1.2) focal; urgency=medium
 
   * SDDM forces hdmi poweroff
