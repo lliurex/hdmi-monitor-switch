@@ -1,0 +1,4 @@
+#!/bin/sh 
+set -e 
+[ -e /etc/udev/rules.d/99_hdmi_screen.rules ] && rm /etc/udev/rules.d/99_hdmi_screen.rules
+exit 0
