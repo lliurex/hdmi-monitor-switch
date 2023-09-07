@@ -1,3 +1,9 @@
+hdmi-monitor-switch (0.2.0lliurex23) jammy; urgency=medium
+
+  * Jammy release
+
+ -- Juanma1980 <juanma1980@gmail.com>  Thu, 07 Sep 2023 09:59:26 +0200
+
 hdmi-monitor-switch (0.2.0) focal; urgency=medium
 
   * Disable udev
